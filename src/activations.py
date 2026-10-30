@@ -2,19 +2,29 @@ import numpy as np
 
 def step(z):
     return np.where(z >= 0, 1, 0)
+
 def sigmoid(z):
-    pass
-def tanh(z):
-    pass
-def relu(z):
-    pass
-def leaky_relu(z, alpha=0.01):
-    pass
+    return 1 / (1 + np.exp(-z))
+
 def sigmoid_derivative(z):
-    pass
+    s = sigmoid(z)
+    return s * (1 - s)
+
+def tanh(z):
+    return np.tanh(z)
+
 def tanh_derivative(z):
-    pass
+    t = tanh(z)
+    return 1 - t ** 2
+
+def relu(z):
+    return np.maximum(0, z)
+
 def relu_derivative(z):
-    pass
+    return np.where(z > 0, 1, 0)
+
+def leaky_relu(z, alpha=0.01):
+    return np.where(z >= 0, z, alpha * z)
+
 def leaky_relu_derivative(z, alpha=0.01):
-    pass
+    return np.where(z >= 0, 1.0, alpha)
